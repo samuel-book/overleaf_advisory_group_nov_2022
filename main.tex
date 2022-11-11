@@ -18,6 +18,31 @@
   \end{frame}
 }
 
+% Used to create a section slide between section
+\AtBeginSection[]{
+  \begin{frame}[noframenumbering, plain]
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+% Used to create a subsection slide between subsections
+% \AtBeginSubsubsection{\frame{\subsubsectionpage}}
+\AtBeginSubsection[]{
+  \begin{frame}[noframenumbering, plain]
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead:\par\phantom{space please}\par\insertsubsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
 % Remove default navigation symbols and add just  page number
 \setbeamertemplate{navigation symbols}{} % Clear default navigation
 \addtobeamertemplate{navigation symbols}{}{%
@@ -27,7 +52,6 @@
     \insertframenumber/\inserttotalframenumber
 }
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Title page
@@ -35,9 +59,6 @@
 \title{Stroke Audit Machine Learning (SAMueL) \\ Advisory Group November 2022}
 \subtitle{Investigating variation in thrombolysis use with clinical pathway simulation and explainable AI}
 
-
-\author{Kerry Pearn\inst{1}, Michael Allen\inst{1}, Anna Laws\inst{1}, Keira Pratt-Boyden\inst{1}, Martin James\inst{1,2} }
-\institute{\inst{1} University of Exeter Medical School \inst{2} Royal Devon University Healthcare NHS Foundation Trust}
 
 %\institute{Overleaf}
 \date{November 2022}
@@ -51,6 +72,17 @@
 \titlepage
 
 \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Modelled stroke pathway}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -71,19 +103,8 @@ We can model key changes to pathway:
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{SAMueL-1 summary}
 
-\begin{frame}
-\frametitle{Machine learning overview}
-\begin{center}
-\includegraphics[width=0.90\textwidth]{./images/ml_model_high_level}
-\end{center}
-
-
-Machine learning (and nearly all \emph{artificial intelligence}) is based on the simple principle of recognising similarity to what has been seen before.
-\vspace{3mm}
-
-We accessed 240,000 emergency stroke admissions in England and Wales over three years.
-\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -128,6 +149,23 @@ For each hospital we use their own patients to ask these questions, to allow for
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Machine learning - learning and comparison decisions to thrombolyse between hopsitals}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Machine learning overview}
+\begin{center}
+\includegraphics[width=0.90\textwidth]{./images/ml_model_high_level}
+\end{center}
+
+
+Machine learning (and nearly all \emph{artificial intelligence}) is based on the simple principle of recognising similarity to what has been seen before.
+\vspace{3mm}
+
+We accessed 240,000 emergency stroke admissions in England and Wales over three years.
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -199,7 +237,6 @@ SHAP values show the influence of features (even for \emph{`black box'} models).
 \end{center}
 \end{frame}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
@@ -213,34 +250,6 @@ SHAP values show the influence of features (even for \emph{`black box'} models).
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Investigating how hospitals differ in thrombolysis decision-making (Patient 1: Base patient)}
-
-Assuming there are no reasons not stated here to exclude a patient from use of thrombolysis, would you give this patient thrombolysis?
-
-\vspace{3mm}
-
-\begin{columns}
-    \begin{column}{0.6\textwidth}
-        \begin{itemize}
-            \item Onset to arrival = 80 mins
-            \item Arrival to scan = 20 mins
-            \item Infarction = Yes
-            \item NIHSS = 15
-            \item Prior disability level = 0
-            \item Precise onset time = Yes
-            \item Use of AF anticoagulents = No
-        \end{itemize}
-    \end{column}
-    
-    \begin{column}{0.4\textwidth}
-    
-    \end{column}
-
-\end{columns}
-\end{frame}
-
 
 \begin{frame}
 \frametitle{Investigating how hospitals differ in thrombolysis decision-making (Patient 1: Base patient)}
@@ -278,34 +287,6 @@ Assuming there are no reasons not stated here to exclude a patient from use of t
 \vspace{3mm}
 
 \begin{columns}
-    \begin{column}{0.6\textwidth}
-        \begin{itemize}
-            \item Onset to arrival = 80 mins
-            \item Arrival to scan = 20 mins
-            \item Infarction = Yes
-            \item \emph{NIHSS = 4}
-            \item Prior disability level = 0
-            \item Precise onset time = Yes
-            \item Use of AF anticoagulents = No
-        \end{itemize}
-    \end{column}
-    
-    \begin{column}{0.4\textwidth}
-    
-    \end{column}
-
-\end{columns}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Investigating how hospitals differ in thrombolysis decision-making (Patient 2: Milder stroke)}
-
-Assuming there are no reasons not stated here to exclude a patient from use of thrombolysis, would you give this patient thrombolysis?
-
-\vspace{3mm}
-
-\begin{columns}
     \begin{column}{0.5\textwidth}
         \begin{itemize}
             \item Onset to arrival = 80 mins
@@ -320,38 +301,6 @@ Assuming there are no reasons not stated here to exclude a patient from use of t
     
     \begin{column}{0.4\textwidth}
     Our model predicts 97 out of 132 (73\%) hospitals would give this patient thrombolysis.
-    \end{column}
-
-\end{columns}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Investigating how hospitals differ in thrombolysis decision-making (Patient 3: Pre-stroke disability)}
-
-Assuming there are no reasons not stated here to exclude a patient from use of thrombolysis, would you give this patient thrombolysis?
-
-\vspace{3mm}
-
-
-\begin{columns}
-    \begin{column}{0.5\textwidth}
-        \begin{itemize}
-            \item Onset to arrival = 80 mins
-            \item Arrival to scan = 20 mins
-            \item Infarction = Yes
-            \item NIHSS = 15
-            \item \emph{Prior disability level = 3*}
-            \item Precise onset time = Yes
-            \item Use of AF anticoagulents = No
-        \end{itemize}
-    \vspace{3mm}    
-    \footnotesize{*Moderate disability; requires some help, but able to walk without assistance.}
-    \end{column}
-    
-    \begin{column}{0.4\textwidth}
-    
     \end{column}
 
 \end{columns}
@@ -398,34 +347,6 @@ Assuming there are no reasons not stated here to exclude a patient from use of t
 \vspace{3mm}
 
 \begin{columns}
-    \begin{column}{0.6\textwidth}
-        \begin{itemize}
-            \item Onset to arrival = 80 mins
-            \item Arrival to scan = 20 mins
-            \item Infarction = Yes
-            \item NIHSS = 15
-            \item Prior disability level = 0
-            \item \emph{Precise onset time = No}
-            \item Use of AF anticoagulents = No
-        \end{itemize}
-    \end{column}
-    
-    \begin{column}{0.4\textwidth}
-    
-    \end{column}
-
-\end{columns}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Investigating how hospitals differ in thrombolysis decision-making (Patient 4: Estimated stroke onset time)}
-
-Assuming there are no reasons not stated here to exclude a patient from use of thrombolysis, would you give this patient thrombolysis?
-
-\vspace{3mm}
-
-\begin{columns}
     \begin{column}{0.5\textwidth}
         \begin{itemize}
             \item Onset to arrival = 80 mins
@@ -448,7 +369,7 @@ Assuming there are no reasons not stated here to exclude a patient from use of t
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Key findings}
+\frametitle{Machine Learning key findings}
 General observations about thrombolysis use: The chance of receiving thrombolysis is increased by:
 \emph{
 \begin{itemize}
@@ -473,20 +394,26 @@ Lower thrombolysing units are particularly less likely to give thrombolysis to p
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{Possible questions for discussion - but please comment as you wish!}
-\begin{small}
-\begin{itemize}
-\setlength\itemsep{1mm}
-    \item Does anything surprise you here, and do these findings reflect your own experiences?
-    \item What are your experiences in treating mild strokes and patients with estimated stroke-onset times?
-    \item What might you do with the knowledge that different hospitals have different attitudes to mild strokes and patients with estimated stroke-onset times? Would it stimulate you to consider your own practice?
-    \item Why do you think pre-stroke disability appears influential in thrombolysis decision-making?
-    \item Do you find SHAP understandable?
-    \item Do the patient examples help? Would you like them filled out more, or do you prefer to see the key decision-makign data in the model?
-\end{itemize}
-\end{small}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Stroke outcome modelling based on times to treatment with thrombolysis and thrombectomy}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Model combines multiple data sources}
+
+
+    
 \end{frame}
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
