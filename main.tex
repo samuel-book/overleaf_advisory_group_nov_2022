@@ -258,6 +258,38 @@ Note: The effect of team ID can depend on other patient characteristics.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}{Comparing hospital SHAP value with the predicted thrombolysis rate if all hospitals say the same 10k patients}
+
+\footnotesize
+
+\begin{itemize}
+    \item We can assess each hospital’s ‘propensity to use thrombolysis’ by passing the same 10k cohort of patients through all hospital prediction models.
+    \item We can compare this 10k thrombolysis rate to the average hospital SHAP.
+    \item These two different methods of isolating the effect of the hopsital on thrombolysis use give very similar results.
+\end{itemize}
+
+\begin{center}
+    \includegraphics[width=0.45\textwidth]{./images/shap_vs_10k.jpg}
+\end{center}
+
+    
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{SHAP for all patients at each hospital}
+    
+Though each hospital has an average SHAP effect, the effect of the hospital varies with patients, depending on the hospital's own patterns of who they are more/less likely to give thrombolysis to.
+
+\begin{center}
+    \includegraphics[width=0.95\textwidth]{./images/hospital_feature_shap_violin}
+\end{center}     
+
+ 
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{frame}
 \frametitle{Investigating how hospitals differ in thrombolysis decision-making (Patient 1: Base patient)}
 
