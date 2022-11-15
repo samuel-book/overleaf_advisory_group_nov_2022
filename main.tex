@@ -288,123 +288,42 @@ Though each hospital has an average SHAP effect, the effect of the hospital vari
 \end{frame}
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{Investigating how hospitals differ in thrombolysis decision-making (Patient 1: Base patient)}
+\frametitle{Investigating how hospitals differ in thrombolysis decision-making: Synthetic patients}
 
-Assuming there are no reasons not stated here to exclude a patient from use of thrombolysis, would you give this patient thrombolysis?
 \vspace{3mm}
 
-\begin{columns}
-    \begin{column}{0.5\textwidth}
+\begin{columns}[t]
+    \begin{column}{0.45\textwidth}
+        Base patient:
         \begin{itemize}
+            \footnotesize
             \item Onset to arrival = 80 mins
             \item Arrival to scan = 20 mins
             \item Infarction = Yes
             \item NIHSS = 15
             \item Prior disability level = 0
-            \item Precise onset time = Yes
+            \item \emph{Precise onset time = Yes}
             \item Use of AF anticoagulents = No
         \end{itemize}
     \end{column}
     
-    \begin{column}{0.4\textwidth}
-    Our model predicts 131 out of 132 (99\%) hospitals would give this patient thrombolysis.
-    \end{column}
-
-\end{columns}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Investigating how hospitals differ in thrombolysis decision-making (Patient 2: Milder stroke)}
-
-Assuming there are no reasons not stated here to exclude a patient from use of thrombolysis, would you give this patient thrombolysis?
-
-\vspace{3mm}
-
-\begin{columns}
     \begin{column}{0.5\textwidth}
-        \begin{itemize}
-            \item Onset to arrival = 80 mins
-            \item Arrival to scan = 20 mins
-            \item Infarction = Yes
-            \item \emph{NIHSS = 4}
-            \item Prior disability level = 0
-            \item Precise onset time = Yes
-            \item Use of AF anticoagulents = No
-        \end{itemize}
-    \end{column}
-    
-    \begin{column}{0.4\textwidth}
-    Our model predicts 97 out of 132 (73\%) hospitals would give this patient thrombolysis.
+    Proportion of hospitals predicted to give thrombolysis:
+    \footnotesize
+    \begin{itemize}
+        \item Base patient: 99\%
+        \item NIHSS = 4: 73\%
+        \item Pre-stroke mRS=3: 86\%
+        \item Estimated stroke onset time: 64\%
+    \end{itemize}
     \end{column}
 
 \end{columns}
 \end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Investigating how hospitals differ in thrombolysis decision-making (Patient 3: Pre-stroke disability)}
-
-Assuming there are no reasons not stated here to exclude a patient from use of thrombolysis, would you give this patient thrombolysis?
-
-\vspace{3mm}
-
-\begin{columns}
-    \begin{column}{0.5\textwidth}
-        \begin{itemize}
-            \item Onset to arrival = 80 mins
-            \item Arrival to scan = 20 mins
-            \item Infarction = Yes
-            \item NIHSS = 15
-            \item \emph{Prior disability level = 3*}
-            \item Precise onset time = Yes
-            \item Use of AF anticoagulents = No
-        \end{itemize}
-    \vspace{3mm}    
-    \footnotesize{*Moderate disability; requires some help, but able to walk without assistance.}
-    \end{column}
-    
-    \begin{column}{0.4\textwidth}
-    Our model predicts 114 out of 132 (86\%) hospitals would give this patient thrombolysis.
-    \end{column}
-
-\end{columns}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}
-\frametitle{Investigating how hospitals differ in thrombolysis decision-making (Patient 4: Estimated stroke onset time)}
-
-Assuming there are no reasons not stated here to exclude a patient from use of thrombolysis, would you give this patient thrombolysis?
-
-\vspace{3mm}
-
-\begin{columns}
-    \begin{column}{0.5\textwidth}
-        \begin{itemize}
-            \item Onset to arrival = 80 mins
-            \item Arrival to scan = 20 mins
-            \item Infarction = Yes
-            \item NIHSS = 15
-            \item Prior disability level = 0
-            \item \emph{Precise onset time = No}
-            \item Use of AF anticoagulents = No
-        \end{itemize}
-    \end{column}
-    
-    \begin{column}{0.4\textwidth}
-    Our model predicts 84 out of 132 (64\%) hospitals would give this patient thrombolysis.
-    \end{column}
-
-\end{columns}
-\end{frame}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -488,86 +407,8 @@ Lower thrombolysing units are particularly less likely to give thrombolysis to p
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Qualitative research}
+\section{Qualitative research and stakeholder engagement - see separate slides}
 
-
-
-\begin{frame}{Qualitative research key themes}
-
-\emph{"Finding out what does it take to get AI stuff USEFULLY incorporated [adopted] into a national audit"}
-
-\vspace{5mm}
-
-Qualitative research has been reviewed, and we are now proposing three components:
-\vspace{2mm}
-
-\begin{itemize}
-    \item Observation case studies
-    \item Interviews (individual and group)
-    \item Model and AI development stakeholder meetings
-\end{itemize}
-
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Observation case studies}
-
-\begin{itemize}
-    \setlength\itemsep{3mm}
-    \item 2 weeks each at three hospitals
-    \item Observation of emergency stroke care
-    \item Interviews about SAMueL analysis for that hospital
-    \item If possible, a (virtual) stakeholder workshop at each hospital, with modellers
-\end{itemize}
-\end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Interviews (individual and group)}
-
-\begin{itemize}
-    \setlength\itemsep{3mm}
-    \item Broaden input to wider than three main case study hospitals
-\end{itemize}
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{frame}{Model and AI development stakeholder meetings}
-
-Engage stakeholders with SAMueL analysis, seek feedback, and refine models and presentation.
-
-\vspace{3mm}
-
-This may occur outside of formal qualitative research.
-
-\vspace{3mm}
-Stakeholders include:
-
-\begin{itemize}
-    \item Individual hospitals (stroke teams)
-    \item Integrated Stroke Delivery Networks
-    \item NHS-E Communities of Practice
-    \item \emph{Key Informers}, e.g. you!, Sally Evans (NHS-E National Stroke Programme Clinical Policy Unit)
-\end{itemize}
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Timelines}
-
-\begin{itemize}
-    \setlength\itemsep{4mm}
-    \item Qualitative work was delayed by time taken to recruit, and by re-assessment of qualitative plans.
-    \item HRA submission now due January 9\textsuperscript{th}. 
-    \item Active research to start April.
-    \item Work depends on approval by HRA REC \emph{and} NIHR (approval of amendment to protocol). We believe risk of rejection by NIHR is low as we are providing some more in-depth research at no requested extension to project timelines and cost.
-
-\end{itemize}
-    
-\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
